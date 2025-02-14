@@ -120,7 +120,11 @@ public class Inventory implements Iterable<ItemStack>, Cloneable
     public ItemStack findMatchingItemStack(ItemStack key)
     {
         // Adapt the logic from Assignment 1
-
+        for(ItemStack i: this.slots) {
+            if(key.getItem().equals(i.getItem())) {
+                return i;
+            }
+        }
         return null;
     }
 
@@ -169,8 +173,10 @@ public class Inventory implements Iterable<ItemStack>, Cloneable
     {
         Inventory copy = new Inventory(this.totalSlots());
 
-        // Add the missing copy logic (loop)
-
+//      Add the missing copy logic (loop)
+        for(ItemStack i: this.slots) {
+            copy.addItems(i);
+        }
         return copy;
     }
 
@@ -217,7 +223,10 @@ public class Inventory implements Iterable<ItemStack>, Cloneable
         strBld.append(summaryLine);
 
         // Add the missing loop
-
+        for (ItemStack i: this.slots) {
+            String newLine = "  " + i.toString() + "\n";
+            strBld.append(newLine);
+        }
         return strBld.toString();
     }
 
